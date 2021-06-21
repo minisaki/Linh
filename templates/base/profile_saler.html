@@ -1,0 +1,95 @@
+<div class="profile-sidebar">
+    <!-- SIDEBAR USERPIC -->
+    <div class="profile-userpic">
+        <img src="{{ user_saler.avatar.url }}" class="img-responsive" alt="">
+    </div>
+    <!-- END SIDEBAR USERPIC -->
+    <!-- SIDEBAR USER TITLE -->
+    <div class="profile-usertitle">
+        <div class="profile-usertitle-name">
+            {{ user_saler.get_full_name }}
+        </div>
+        <div class="profile-usertitle-job">
+            <span >
+                     Xếp hạng: </span>
+                <span >
+                   <i
+                           class="fas fa-star rating-star-show {% if user_saler.avg_ratings > 0 %}rate-orange{% endif %}"
+                   ></i>
+                    <i
+                            class="fas fa-star rating-star-show {% if user_saler.avg_ratings > 1 %}rate-orange{% endif %}"></i>
+                    <i
+                            class="fas fa-star rating-star-show {% if user_saler.avg_ratings > 2 %}rate-orange{% endif %}"></i>
+                    <i
+                            class="fas fa-star rating-star-show {% if user_saler.avg_ratings > 3 %}rate-orange{% endif %}"></i>
+                    <i
+                            class="fas fa-star rating-star-show {% if user_saler.avg_ratings > 4 %}rate-orange{% endif %}"></i>
+                </span>
+                <span>({{user_saler.on_of_ratings}})</span>
+        </div>
+    </div>
+    <!-- END SIDEBAR USER TITLE -->
+    <!-- SIDEBAR BUTTONS -->
+<!--    <div class="profile-userbuttons">-->
+<!--        <form action="/user/profile/updateavatar/" method="post" enctype="multipart/form-data" id="formAvatar" >-->
+<!--            {% csrf_token %}-->
+<!--            <input type="file" name="avatar" accept="image/*" required="" id="id_avatar" class="d-none">-->
+<!--        </form>-->
+<!--        <button type="button" class="btn btn-success btn-sm" onclick="$('#id_avatar').click()">ĐỔI AVATAR</button>-->
+<!--        <button type="button" class="btn btn-danger btn-sm">BUTTON 2</button>-->
+<!--    </div>-->
+    <!-- END SIDEBAR BUTTONS -->
+    <!-- SIDEBAR MENU -->
+    <div class="profile-usermenu">
+        <ul class="nav" >
+            <li class="rating-text">
+                <span >
+                    <i class="glyphicon glyphicon-user"></i>
+                     Đánh giá: </span>
+                <ul id='stars' class="rating-stars">
+                  <li class='star' title='Poor' data-value='1'>
+                    <i class='fa fa-star fa-fw'></i>
+                  </li>
+                  <li class='star' title='Fair' data-value='2'>
+                    <i class='fa fa-star fa-fw'></i>
+                  </li>
+                  <li class='star' title='Good' data-value='3'>
+                    <i class='fa fa-star fa-fw'></i>
+                  </li>
+                  <li class='star' title='Excellent' data-value='4'>
+                    <i class='fa fa-star fa-fw'></i>
+                  </li>
+                  <li class='star' title='WOW!!!' data-value='5'>
+                    <i class='fa fa-star fa-fw'></i>
+                  </li>
+                </ul>
+            </li>
+            <li>
+                <span >
+                    <i class="fas fa-user-edit"></i>
+                     ngày tham gia: </span>
+                <span > {{ user_saler.date_of_birth }}</span>
+            </li>
+            <li>
+                <span >
+                    <i class="glyphicon glyphicon-ok"></i>
+                     Địa chỉ</span>
+                <span > {{ user_saler.address }}</span>
+            </li>
+            <li>
+                <span >
+                    <i class="fas fa-shopping-cart"></i>
+                     Phản hồi chat:</span>
+                <span > Shop uy tín</span>
+            </li>
+            <li>
+                <span >
+                    <i class="fas fa-store"></i>
+                    Đã cung cấp: </span>
+                <span > </span>
+            </li>
+        </ul>
+    </div>
+    <!-- END MENU -->
+</div>
+
