@@ -27,6 +27,21 @@
                 </span>
                 <span>({{user_saler.on_of_ratings}})</span>
         </div>
+        <div class="profile-usertitle-job">
+            <button type="submit"
+                    class="btn btn-primary"
+                    id="follow"
+                    role="button">{% if check %} Bỏ {% endif %}Theo dõi
+                ({{lenFollow}})</button>
+            <button type="submit"
+                    class="btn btn-danger waves-effect waves-light"
+                    role="button"
+                    id="report"
+                    data-toggle="modal" data-target="#exampleModal"
+            >Báo cáo </button>
+
+
+        </div>
     </div>
     <!-- END SIDEBAR USER TITLE -->
     <!-- SIDEBAR BUTTONS -->
@@ -91,5 +106,79 @@
         </ul>
     </div>
     <!-- END MENU -->
+<!--    <div class="modal-report" >-->
+<!--        <div class="" >-->
+<!--            <div class="">-->
+<!--                <div class="">-->
+<!--                    <h4 class="">Sign in</h4>-->
+<!--                    <button type="button" class="close">-->
+<!--                        <span aria-hidden="true">&times;</span>-->
+<!--                    </button>-->
+<!--                </div>-->
+<!--                <form  class="loginForm" >-->
+<!--                    {% csrf_token %}-->
+<!--                    <div class="modal-body mx-3">-->
+<!--                        <div class="md-form mb-5">-->
+<!--                            <i class="fas fa-envelope prefix grey-text"></i>-->
+<!--                            <input type="text" name="username" id="defaultForm-email" class="form-control">-->
+<!--                            <label data-error="wrong" data-success="right" for="defaultForm-email">Tên đăng nhập</label>-->
+<!--                        </div>-->
+
+<!--                        <div class="md-form mb-4">-->
+<!--                            <i class="fas fa-lock prefix grey-text"></i>-->
+<!--                            <input type="password" name="password" id="defaultForm-pass" class="form-control">-->
+<!--                            <label data-error="wrong" data-success="right" for="defaultForm-pass">Mật khẩu</label>-->
+<!--                        </div>-->
+
+<!--                    </div>-->
+<!--                    <h6 class="text-danger text-center" id="errorLogin"></h6>-->
+<!--                    <div class="modal-footer d-flex justify-content-center">-->
+<!--                        <button class="btn btn-default" type="button" onclick="LoginAction()">Login</button>-->
+<!--                    </div>-->
+<!--                </form>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+    {% if title %}
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Lý do báo cáo</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+        <form method="post" action="">
+           {% csrf_token %}
+          <div class="modal-body">
+              {% for item in title %}
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" value=""
+                     id="{{item.id}}" name="{{item.id}}">
+              <label class="form-check-label" for="{{item.id}}">
+                {{item}}
+              </label>
+            </div>
+              {% endfor %}
+
+            <div class="form-group">
+                <label for="message-text" class="col-form-label">Lý do
+                    khác:</label>
+                <textarea class="form-control" id="message-text"></textarea>
+            </div>
+
+          </div>
+          <div class="modal-footer">
+    <!--        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
+            <button type="button" class="btn btn-primary" id="user-report">Gửi
+                lý
+                do</button>
+          </div>
+
+      </form></div>
+  </div>
+</div>
+    {% endif %}
 </div>
 

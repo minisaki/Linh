@@ -95,6 +95,22 @@
     </div>
 {% endblock %}
 {% block js %}
+<script src="https://cdn.jsdelivr.net/npm/js-cookie@2.2.1/src/
+js.cookie.min.js"></script>
+<script>
+ var csrftoken = Cookies.get('csrftoken');
+ function csrfSafeMethod(method) {
+ // these HTTP methods do not require CSRF protection
+ return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+ }
+ $.ajaxSetup({
+ beforeSend: function(xhr, settings) {
+ if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+ xhr.setRequestHeader("X-CSRFToken", csrftoken);
+ }
+ }
+ });
+ </script>
 <script>
 $(document).ready(function(){
 
@@ -145,6 +161,64 @@ $(document).ready(function(){
 
         }
     });
+    });
+
+    $("#user-report").on("click", function (){
+        function report_list() {
+            let report_title = []
+            {% for item in title %}
+            if ($('#{{item.id}}').is(":checked"))
+                {
+                    report_title.push({{item.id}})
+                }
+            {% endfor %}
+
+            console.log(report_title)
+            return report_title
+        }
+
+
+
+        function ajax_post(list, text=""){
+            console.log(typeof(list))
+            $.ajax({
+            method: 'post',
+            url: '{% url "report" %}',
+            data: {
+              'user_get_id': {{user_saler.id}},
+              'report_title': JSON.stringify(list),
+              'text': text,
+            },
+            dataType: 'json',
+            success: function (data) {
+                alert(data.message);
+            }
+        })};
+
+    (async () => {
+        try{
+            let list = await report_list()
+            let text = $('#message-text').val();
+            ajax_post(list, text)
+        }
+        catch(err){
+              console.log(err)
+         }
+    })()
+});
+    $("#follow").on("click", function (){
+        $.ajax({
+            method: 'post',
+            url: '{% url "follow" %}',
+            data: {
+              'user_get_id': {{user_saler.id}},
+            },
+            dataType: 'json',
+            success: function (data) {
+                alert(data.message);
+                window.location = "{% url 'profile_saler' user_saler.id %}"
+            }
+ });
     });
 });
   </script>

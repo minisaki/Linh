@@ -140,3 +140,7 @@ li.star.selected > i {
 .form-control-custom {
     height: 34px !important;
 }
+
+.form-check {
+    margin: 10px 0px;
+}

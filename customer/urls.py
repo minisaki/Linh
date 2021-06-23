@@ -5,4 +5,6 @@ urlpatterns = [
          name="profile_saler"),
     path("rating/<int:user_id>", views.RateUserView.as_view(),
          name="rating"),
+    path("report/", views.ReportView.as_view(), name="report"),
+    path("follow/", views.FollowView.as_view(), name="follow")
 ]
